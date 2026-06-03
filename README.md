@@ -70,7 +70,7 @@ LiDAR is far more weather-resistant than most people assume.
 | 75 (very heavy) | 91.8% | Safe |
 | 100 (extreme) | 88.8% | Safe |
 
-Rain at 100 mm/hr — Phoenix monsoon level — still achieves 88.8% detection.
+Rain at 100 mm/hr - Phoenix monsoon level - still achieves 88.8% detection.
 LiDAR survives rain because laser pulses at 905nm wavelength are not significantly
 absorbed by millimeter-scale water droplets. This is exactly why Waymo chose
 LiDAR over cameras for adverse weather operation.
@@ -89,7 +89,7 @@ LiDAR over cameras for adverse weather operation.
 
 The safety boundary is between 75m and 50m visibility.
 Below 75m visibility this LiDAR system cannot be trusted for safe operation.
-Fog uses Koschmieder extinction — fine droplets attenuate laser energy
+Fog uses Koschmieder extinction - fine droplets attenuate laser energy
 far more aggressively than rain droplets across the same distance.
 
 ### Finding 3 - Rain Adds Ghost Points, Not Misses
@@ -100,7 +100,7 @@ Rain 25 mm/hr    : 124,458 points  (+2,510 ghost points)
 Rain 100 mm/hr   : 132,804 points  (+10,856 ghost points)
 ```
 
-Rain does not remove real detections — it adds fake ones.
+Rain does not remove real detections - it adds fake ones.
 At 100 mm/hr there are 24,203 backscatter ghost points in the near field (< 15m).
 These create false cluster detections that could trigger unnecessary emergency braking.
 The danger from rain is not missed objects. It is false alarms.
