@@ -1,7 +1,7 @@
-# Day 7 — Adverse Weather LiDAR Perception Analysis
+# Day 7 - Adverse Weather LiDAR Perception Analysis
 
 > **Series 1: Perception | Project 7 of 12**
-> MS Robotics & Autonomous Systems Engineering — Arizona State University — Dec 2026
+> MS Robotics & Autonomous Systems Engineering - Arizona State University - Dec 2026
 
 ---
 
@@ -17,13 +17,13 @@ I measured mine on real KITTI sensor data.
 
 ## Animated Point Cloud Degradation
 
-*Watch the LiDAR scan degrade from clean to fog — 6 weather conditions*
+*Watch the LiDAR scan degrade from clean to fog - 6 weather conditions*
 
 ![Weather Degradation GIF](https://drive.google.com/uc?id=17AtRqY8vLZ9kbbKmVphnm3AjdLI75TJk)
 
 ---
 
-## Safety Heatmap — Operational Design Domain
+## Safety Heatmap - Operational Design Domain
 
 *Every rain + fog combination tested. Green = safe. Red = unsafe.*
 
@@ -41,7 +41,7 @@ LiDAR is far more weather-resistant than most people assume.
 
 ---
 
-## Point Cloud Comparison — Clean vs Rain vs Fog
+## Point Cloud Comparison - Clean vs Rain vs Fog
 
 *Top row: rain progression. Bottom row: fog progression.*
 
@@ -59,7 +59,7 @@ LiDAR is far more weather-resistant than most people assume.
 
 ## Key Findings
 
-### Finding 1 — Rain Does Not Kill LiDAR
+### Finding 1 - Rain Does Not Kill LiDAR
 
 | Rain (mm/hr) | Detection Rate | Status |
 |---|---|---|
@@ -75,7 +75,7 @@ LiDAR survives rain because laser pulses at 905nm wavelength are not significant
 absorbed by millimeter-scale water droplets. This is exactly why Waymo chose
 LiDAR over cameras for adverse weather operation.
 
-### Finding 2 — Fog is the Real Threat
+### Finding 2 - Fog is the Real Threat
 
 | Visibility (m) | Detection Rate | Status |
 |---|---|---|
@@ -92,7 +92,7 @@ Below 75m visibility this LiDAR system cannot be trusted for safe operation.
 Fog uses Koschmieder extinction — fine droplets attenuate laser energy
 far more aggressively than rain droplets across the same distance.
 
-### Finding 3 — Rain Adds Ghost Points, Not Misses
+### Finding 3 - Rain Adds Ghost Points, Not Misses
 
 ```
 Clean cloud      : 121,948 points
@@ -105,7 +105,7 @@ At 100 mm/hr there are 24,203 backscatter ghost points in the near field (< 15m)
 These create false cluster detections that could trigger unnecessary emergency braking.
 The danger from rain is not missed objects. It is false alarms.
 
-### Finding 4 — Range Determines Rain Vulnerability
+### Finding 4 - Range Determines Rain Vulnerability
 
 From the range analysis chart:
 - Rain 100 mm/hr at 0-10m: **126% survival** (ghost points dominate)
@@ -116,7 +116,7 @@ Rain kills distant objects first. A pedestrian at 40m in heavy rain
 has only 69% point survival. At 5m the same pedestrian appears inflated
 with fake backscatter points around them.
 
-### Finding 5 — The ODD is Almost Unlimited
+### Finding 5 - The ODD is Almost Unlimited
 
 The operational design domain for this LiDAR system:
 
@@ -138,19 +138,19 @@ This covers:
 
 ### Physics Models
 
-**Rain — Marshall-Palmer Attenuation**
+**Rain - Marshall-Palmer Attenuation**
 ```
 P_survive = exp(-alpha * intensity_mmhr * range / MAX_RANGE)
 alpha = 0.01 (905nm Velodyne HDL-64E)
 ```
 
-**Fog — Koschmieder Visibility Law**
+**Fog - Koschmieder Visibility Law**
 ```
 extinction = 3.912 / visibility_m
 P_survive  = exp(-extinction * range / 10.0)
 ```
 
-**Backscatter** — rain droplets create false returns near sensor,
+**Backscatter** - rain droplets create false returns near sensor,
 modeled proportional to intensity and point density.
 
 ### Pipeline
@@ -189,14 +189,14 @@ Total evaluations    : 130 per frame x 10 frames
 Rain droplets are 1-5mm diameter. Fog droplets are 1-100 micrometers.
 The smaller the droplet the more interaction per unit volume.
 A cubic meter of dense fog contains millions more droplets than
-a cubic meter of heavy rain — each one scattering laser energy.
+a cubic meter of heavy rain - each one scattering laser energy.
 This is why visibility range matters more than rainfall rate
 when characterizing LiDAR performance.
 
 **The ghost point problem is underappreciated:**
 Most papers report missed detection rate from rain.
 The backscatter ghost point rate gets less attention.
-But false positives in a safety system are equally dangerous —
+But false positives in a safety system are equally dangerous -
 phantom braking at highway speed causes rear collisions.
 Measuring ghost points separately from real point loss
 gives a more complete picture of rain's actual danger.
@@ -281,7 +281,7 @@ day-007-adverse-weather-perception/
 
 ---
 
-## Series 1 — Perception Progress
+## Series 1 - Perception Progress
 
 | # | Project | Status |
 |---|---------|--------|
